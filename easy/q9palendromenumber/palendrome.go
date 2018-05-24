@@ -1,6 +1,27 @@
 package q9panedromenumber
 
-func isPalindrome(x int) bool {
+// isPalendrome1 builds an int iin reverse
+func isPalindrome1(x int) bool {
+
+	if x < 0 {
+		return false
+	}
+
+	forwards := x
+	reverse := 0
+
+	for x != 0 {
+		y := x / 10
+		digit := x - y*10
+		reverse = reverse*10 + digit
+		x = y
+	}
+
+	return forwards == reverse
+}
+
+// isPalindrome2 uses a slice to compare
+func isPalindrome2(x int) bool {
 
 	if x < 0 {
 		return false
