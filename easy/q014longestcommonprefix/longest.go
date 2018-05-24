@@ -1,4 +1,4 @@
-package q14longestcommonprefix
+package longestcommonprefix
 
 func longestCommonPrefix(strs []string) string {
 	return ""

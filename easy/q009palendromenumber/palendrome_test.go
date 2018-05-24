@@ -1,4 +1,4 @@
-package q9panedromenumber
+package palendromenumber
 
 import (
 	"testing"

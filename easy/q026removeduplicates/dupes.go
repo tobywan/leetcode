@@ -1,4 +1,4 @@
-package q26removeduplicates
+package removeduplicates
 
 func removeDuplicates(nums []int) int {
 	return 0

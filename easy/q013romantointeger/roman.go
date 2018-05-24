@@ -1,5 +1,5 @@
-// Package q13romantointeger is a roman numeral converter
-package q13romantointeger
+// Package romantointeger is a roman numeral converter
+package romantointeger
 
 import (
 	"errors"

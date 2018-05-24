@@ -1,4 +1,4 @@
-package q7reverseinteger
+package reverseinteger
 
 func reverse(x int) int {
 

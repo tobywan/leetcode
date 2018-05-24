@@ -1,4 +1,4 @@
-package q7reverseinteger
+package reverseinteger
 
 import (
 	"testing"

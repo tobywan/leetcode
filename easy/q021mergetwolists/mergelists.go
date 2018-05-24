@@ -1,4 +1,4 @@
-package q21mergetwolists
+package mergetwolists
 
 // ListNode is a Definition for singly-linked list.
 type ListNode struct {

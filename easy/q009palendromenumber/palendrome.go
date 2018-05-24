@@ -1,4 +1,4 @@
-package q9panedromenumber
+package palendromenumber
 
 // isPalendrome1 builds an int iin reverse
 func isPalindrome1(x int) bool {

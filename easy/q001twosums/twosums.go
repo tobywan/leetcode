@@ -1,4 +1,4 @@
-package q1twosum
+package twosum
 
 func twoSum(nums []int, target int) []int {
 	// read into map with index:
