@@ -10,7 +10,7 @@ func strStr(haystack string, needle string) int {
 	for pos := 0; pos+ln <= lh; pos++ {
 
 		if begins(haystack[pos:], needle) {
-			return utf8.RuneCount([]byte(haystack)[:pos])
+			return utf8.RuneCountInString(haystack[:pos])
 		}
 
 	}
