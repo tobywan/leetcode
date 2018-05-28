@@ -5,14 +5,30 @@ func mySqrt(x int) int {
 	if x <= 1 {
 		return x
 	}
+	b := bounded(x)
 
-	lb, found := lowerbound(x)
-	if found {
-		return lb
-	}
-
-	b := &bounds{lb, x}
 	return narrow(b, x)
+}
+
+func bounded(x int) *bounds {
+
+	lb := 1
+	ub := x
+
+	lower := lb*lb <= x
+	for lower {
+		t := lb * 2
+		sqr := t * t
+
+		lower = sqr <= x
+		if lower {
+			lb = t
+		} else {
+			ub = t
+		}
+
+	}
+	return &bounds{lb, ub}
 
 }
 
@@ -39,6 +55,22 @@ func narrow(b *bounds, x int) int {
 	}
 
 	return b.low
+
+}
+
+func mySqrt2(x int) int {
+
+	if x <= 1 {
+		return x
+	}
+
+	lb, found := lowerbound(x)
+	if found {
+		return lb
+	}
+
+	b := &bounds{lb, x}
+	return narrow(b, x)
 
 }
 
