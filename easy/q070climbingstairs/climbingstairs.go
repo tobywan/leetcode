@@ -1,6 +1,19 @@
 package climbingstairs
 
 func climbStairs(n int) int {
+	a := 1
+	b := 1
+
+	for n > 0 {
+		a, b = b, a+b
+		n--
+	}
+
+	return a
+
+}
+
+func climbStairsJournal(n int) int {
 
 	cache := make(intMap)
 
