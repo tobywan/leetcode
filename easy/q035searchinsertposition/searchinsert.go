@@ -2,7 +2,38 @@ package searchinsertposition
 
 import "fmt"
 
+// searchInsert more elegant solutin not using recursion
 func searchInsert(nums []int, target int) int {
+	size := len(nums)
+
+	if size == 0 {
+		return 0
+	}
+
+	right := size - 1
+	left := 0
+
+	// move start to the target or
+	for left < right {
+		mid := (left + right) / 2
+		switch {
+		case nums[mid] == target:
+			return mid
+		case nums[mid] < target:
+			left = mid + 1
+		case nums[mid] > target:
+			right = mid - 1
+		}
+	}
+	if nums[left] >= target {
+		return left
+	}
+
+	return left + 1
+
+}
+
+func searchInsertRec(nums []int, target int) int {
 	l := len(nums)
 
 	if l == 0 {
@@ -25,7 +56,7 @@ func searchInsert(nums []int, target int) int {
 // findPos locates the position in the nums slice.
 // offset is the index of the first element relative to the beginning of
 // the original slice
-// 2 4 6 8 10 | 12 14 16 18 20
+// 2 4 6 8 10 12 14 16 18 20
 func findPos(nums []int, target int, index int) int {
 
 	//	fmt.Printf("nums: %v, index: %d\n", nums, index)

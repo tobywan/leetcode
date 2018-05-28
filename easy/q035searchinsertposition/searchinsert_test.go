@@ -4,6 +4,14 @@ import (
 	"testing"
 )
 
+func BenchmarkSearchInsertRec(b *testing.B) {
+	searchInsertRec([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 20, 21}, 10)
+}
+
+func BenchmarkSearchInsert(b *testing.B) {
+	searchInsert([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 20, 21}, 10)
+}
+
 func TestSearchInsert(t *testing.T) {
 	tests := []struct {
 		in1  []int
