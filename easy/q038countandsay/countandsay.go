@@ -14,7 +14,10 @@ func countAndSay(n int) string {
 	s := sentence{
 		num: 2,
 		sequences: []sequence{
-			{1, 1},
+			{
+				digit: '1',
+				count: 1,
+			},
 		},
 	}
 	for s.num < n {
@@ -33,7 +36,7 @@ func (s *sentence) String() string {
 	var b bytes.Buffer
 	for _, seq := range s.sequences {
 
-		b.WriteString(seq.String())
+		seq.String(&b)
 	}
 	return b.String()
 }
@@ -49,25 +52,24 @@ func (s *sentence) increment() {
 			count++
 		} else {
 			// flush the previous rune
-			s.sequences = append(s.sequences, sequence{int(r1 - '0'), count})
+			s.sequences = append(s.sequences, sequence{r1, count})
 			r1 = r2
 			count = 1
 		}
 	}
 	// flush the last run
-	s.sequences = append(s.sequences, sequence{int(r1 - '0'), count})
+	s.sequences = append(s.sequences, sequence{r1, count})
 
 }
 
 type sequence struct {
-	digit int
+	digit rune
 	count int
 }
 
-func (s *sequence) String() string {
-	var b bytes.Buffer
-	b.WriteString(strconv.Itoa(s.count))
-	b.WriteString(strconv.Itoa(s.digit))
+func (s *sequence) String(b *bytes.Buffer) {
 
-	return b.String()
+	b.WriteString(strconv.Itoa(s.count))
+	b.WriteByte(byte(s.digit))
+
 }
