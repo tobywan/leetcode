@@ -13,10 +13,27 @@ import (
  * }
  */
 func deleteDuplicates(head *ListNode) *ListNode {
-	return nil
+
+	if head == nil {
+		return nil
+	}
+	// two pointers fast slow.
+	// fast looks ahead for non duplicates and appends to slow
+	fast := head.Next
+	slow := head
+
+	for fast != nil {
+		// fast forward past duplicates
+		for fast != nil && fast.Val == slow.Val {
+			fast = fast.Next
+		}
+		slow.Next = fast
+		slow = slow.Next
+	}
+	return head
 }
 
-/////////////////////////
+////////////////////////
 // local code only for test and display
 
 // ListNode is a Definition for singly-linked list.
