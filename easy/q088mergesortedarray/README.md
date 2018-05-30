@@ -15,3 +15,5 @@ nums2 = [2,5,6],       n = 3
 
 Output: [1,2,2,3,5,6]
 ```
+*NOTE* 
+Would be better to work from the back to the front
