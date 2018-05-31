@@ -9,6 +9,23 @@ type Node struct {
 	Right *Node
 }
 
+func isSymmetric(root *Node) bool {
+	return isMirror(root.Left, root.Right)
+
+}
+func isMirror(a, b *Node) bool {
+	switch {
+	case a == nil && b == nil:
+		return true
+	case a == nil || b == nil:
+		return false
+	case a.Val != b.Val:
+		return false
+	default:
+		return isMirror(a.Left, b.Right) && isMirror(a.Right, b.Left)
+	}
+}
+
 // Equal compares two trees for equality. Nil nodes are equal
 func Equal(a, b *Node) bool {
 

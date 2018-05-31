@@ -55,3 +55,34 @@ func TestEqual(t *testing.T) {
 		}
 	}
 }
+
+func TestIsMirror(t *testing.T) {
+	tests := []struct {
+		in1  map[int]int
+		want bool
+	}{
+		{
+			in1:  map[int]int{1: 1},
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 2},
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 2, 4: 3, 5: 4, 6: 4, 7: 3},
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 2, 5: 3, 7: 3},
+			want: false,
+		},
+	}
+	for _, test := range tests {
+		a := NewBT(test.in1)
+		got := isSymmetric(a)
+		if got != test.want {
+			t.Errorf("isSymmetric(%v)=%t", test.in1, got)
+		}
+	}
+}
