@@ -9,6 +9,21 @@ type Node struct {
 	Right *Node
 }
 
+func maxDepth(root *Node) int {
+	if root == nil {
+		return 0
+	}
+
+	return 1 + max(maxDepth(root.Left), maxDepth(root.Right))
+}
+
+func max(m, n int) int {
+	if m > n {
+		return m
+	}
+	return n
+}
+
 func isSymmetric(root *Node) bool {
 	return isMirror(root.Left, root.Right)
 

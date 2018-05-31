@@ -8,8 +8,20 @@ package maxdepthbintree
  *     Right *TreeNode
  * }
  */
+// See github.com/tobywan/leetcode/types/tree/binarytree.go
 func maxDepth(root *TreeNode) int {
-	return 0
+	if root == nil {
+		return 0
+	}
+
+	return 1 + max(maxDepth(root.Left), maxDepth(root.Right))
+}
+
+func max(m, n int) int {
+	if m > n {
+		return m
+	}
+	return n
 }
 
 // TreeNode is A definition for a binary tree node.
