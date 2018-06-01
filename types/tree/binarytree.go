@@ -9,6 +9,26 @@ type Node struct {
 	Right *Node
 }
 
+// toMap returns a map representation of the tree
+// i is the index of the current node, e.g 0 for root, 1 for root.Left etc
+func toMap(n *Node, index int) map[int]int {
+	if n == nil {
+		return nil
+	}
+	ret := make(map[int]int)
+	ret[index] = n.Val
+	ml := toMap(n.Left, index*2)
+	mr := toMap(n.Right, index*2+1)
+	for k, v := range ml {
+		ret[k] = v
+	}
+	for k, v := range mr {
+		ret[k] = v
+	}
+
+	return ret
+}
+
 func levelOrderBottom(root *Node) [][]int {
 
 	res := [][]int{}

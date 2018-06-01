@@ -130,14 +130,14 @@ func TestLevelOrderBottom(t *testing.T) {
 		in1  map[int]int
 		want [][]int
 	}{
-		// {
-		// 	in1:  map[int]int{1: 1, 2: 2, 3: 3},
-		// 	want: [][]int{{2, 3}, {1}},
-		// },
-		// {
-		// 	in1:  map[int]int{1: 1},
-		// 	want: [][]int{{1}},
-		// },
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 3},
+			want: [][]int{{2, 3}, {1}},
+		},
+		{
+			in1:  map[int]int{1: 1},
+			want: [][]int{{1}},
+		},
 		{
 			in1:  map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7},
 			want: [][]int{{4, 5, 6, 7}, {2, 3}, {1}},
@@ -156,6 +156,43 @@ func TestLevelOrderBottom(t *testing.T) {
 		got := levelOrderBottom(a)
 		if !reflect.DeepEqual(got, test.want) {
 			t.Errorf("levelOrderBottom(%v)=%v, want %v", test.in1, got, test.want)
+		}
+	}
+
+}
+
+func TestToMap(t *testing.T) {
+
+	tests := []struct {
+		in1  map[int]int
+		want map[int]int
+	}{
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 3},
+			want: map[int]int{1: 1, 2: 2, 3: 3},
+		},
+		{
+			in1:  map[int]int{1: 1},
+			want: map[int]int{1: 1},
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7},
+			want: map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7},
+		},
+		{
+			in1:  map[int]int{1: 3, 2: 9, 3: 20, 6: 15, 7: 7},
+			want: map[int]int{1: 3, 2: 9, 3: 20, 6: 15, 7: 7},
+		},
+		{
+			in1:  map[int]int{1: 3, 2: 9, 4: 20, 8: 15, 16: 7},
+			want: map[int]int{1: 3, 2: 9, 4: 20, 8: 15, 16: 7},
+		},
+	}
+	for _, test := range tests {
+		a := NewBT(test.in1)
+		got := toMap(a, 1)
+		if !reflect.DeepEqual(got, test.want) {
+			t.Errorf("toMap(%v)=%v, want %v", test.in1, got, test.want)
 		}
 	}
 
