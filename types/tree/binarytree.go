@@ -9,6 +9,34 @@ type Node struct {
 	Right *Node
 }
 
+func levelOrderBottom(root *Node) [][]int {
+
+	res := [][]int{}
+
+	res = inOrderTraverse(root, 0, res)
+
+	for i, j := 0, len(res)-1; i < j; i, j = i+1, j-1 {
+		res[i], res[j] = res[j], res[i]
+	}
+	return res
+}
+
+// the level of a root node is 0
+func inOrderTraverse(node *Node, level int, seen [][]int) [][]int {
+	if node == nil {
+		return seen
+	}
+
+	if level == len(seen) {
+		seen = append(seen, []int{})
+	}
+	seen = inOrderTraverse(node.Left, level+1, seen)
+	seen[level] = append(seen[level], node.Val)
+	seen = inOrderTraverse(node.Right, level+1, seen)
+
+	return seen
+}
+
 func maxDepth(root *Node) int {
 	if root == nil {
 		return 0
