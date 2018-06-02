@@ -186,3 +186,28 @@ func NewBT(vals map[int]int) *Node {
 	return done[1]
 
 }
+
+// NewBalancedBT creates a balanced BT where the left and right subtrees
+// of each node differ in hight by a max of two
+func NewBalancedBT(sorted []int) (root *Node) {
+
+	root = toNode(sorted)
+
+	return root
+}
+
+func toNode(s []int) *Node {
+	l := len(s)
+
+	if l == 0 {
+		return nil
+	}
+	mid := l / 2
+
+	n := &Node{Val: s[mid]}
+
+	n.Left = toNode(s[:mid])
+	n.Right = toNode(s[mid+1:])
+
+	return n
+}

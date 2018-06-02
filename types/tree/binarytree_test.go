@@ -197,3 +197,34 @@ func TestToMap(t *testing.T) {
 	}
 
 }
+
+func TestNewBalancedBT(t *testing.T) {
+	tests := []struct {
+		in   []int
+		want map[int]int
+	}{
+		{
+			in:   []int{1},
+			want: map[int]int{1: 1},
+		},
+		{
+			in:   []int{1, 2},
+			want: map[int]int{1: 2, 2: 1},
+		},
+		{
+			in:   []int{1, 2, 3},
+			want: map[int]int{1: 2, 2: 1, 3: 3},
+		},
+		{
+			in:   []int{1, 2, 3, 4, 5},
+			want: map[int]int{1: 3, 2: 2, 4: 1, 3: 5, 6: 4},
+		},
+	}
+	for _, test := range tests {
+		w := NewBT(test.want)
+		got := NewBalancedBT(test.in)
+		if !Equal(got, w) {
+			t.Errorf("NewBalancedBT(%v)=%v, want %v", test.in, toMap(got, 1), test.want)
+		}
+	}
+}

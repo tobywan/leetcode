@@ -17,10 +17,23 @@ type TreeNode struct {
  */
 func sortedArrayToBST(nums []int) *TreeNode {
 
-	if len(nums) == 0 {
-		return nil
-	}
-	root := &TreeNode{Val: nums[0]}
+	root := toNode(nums)
 
 	return root
+}
+
+func toNode(s []int) *TreeNode {
+	l := len(s)
+
+	if l == 0 {
+		return nil
+	}
+	mid := l / 2
+
+	n := &TreeNode{Val: s[mid]}
+
+	n.Left = toNode(s[:mid])
+	n.Right = toNode(s[mid+1:])
+
+	return n
 }
