@@ -211,3 +211,32 @@ func toNode(s []int) *Node {
 
 	return n
 }
+
+func minDepth(root *Node) int {
+	if root == nil {
+		return 0
+	}
+	return minSubDepth([]*Node{root}, 1)
+}
+
+func minSubDepth(level []*Node, levelDepth int) int {
+
+	next := make([]*Node, 0, len(level)*2)
+	for _, n := range level {
+		if n == nil {
+			continue
+		}
+		if n.Left == nil && n.Right == nil {
+			return levelDepth
+		}
+		next = append(next, n.Left, n.Right)
+	}
+	return minSubDepth(next, levelDepth+1)
+}
+
+func min(m, n int) int {
+	if m < n {
+		return m
+	}
+	return n
+}

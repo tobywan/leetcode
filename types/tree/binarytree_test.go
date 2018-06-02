@@ -228,3 +228,40 @@ func TestNewBalancedBT(t *testing.T) {
 		}
 	}
 }
+
+func TestMinDepth(t *testing.T) {
+
+	tests := []struct {
+		in1  map[int]int
+		want int
+	}{
+		// {
+		// 	in1:  map[int]int{1: 1},
+		// 	want: 1,
+		// },
+		{
+			in1:  map[int]int{1: 1, 2: 2},
+			want: 2,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 2, 4: 3, 5: 4, 6: 4, 7: 3},
+			want: 3,
+		},
+		{
+			in1:  map[int]int{1: 3, 2: 9, 3: 20, 6: 15, 7: 7},
+			want: 2,
+		},
+		{
+			in1:  map[int]int{1: 3, 2: 9, 4: 20, 8: 15, 16: 7},
+			want: 5,
+		},
+	}
+	for _, test := range tests {
+		a := NewBT(test.in1)
+		got := minDepth(a)
+		if got != test.want {
+			t.Errorf("minDepth(%v)=%d, want %d", test.in1, got, test.want)
+		}
+	}
+
+}
