@@ -340,3 +340,43 @@ func TestHasPathSum(t *testing.T) {
 	}
 
 }
+
+func TestIsBalanced(t *testing.T) {
+	tests := []struct {
+		in1  map[int]int
+		want bool
+	}{
+		{
+			in1:  map[int]int{1: 1},
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2},
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7},
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 3, 2: 9, 4: 20, 8: 15, 16: 7},
+			want: false,
+		},
+		{
+			in1:  map[int]int{1: 3, 2: 9, 3: 20, 6: 15, 7: 7},
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 2, 4: 3, 5: 3, 8: 4, 9: 4},
+			want: false,
+		},
+	}
+	for _, test := range tests {
+		a := NewBT(test.in1)
+		got := isBalanced(a)
+		if got != test.want {
+			t.Errorf("isBalanced(%v)=%t", test.in1, got)
+		}
+	}
+
+}
