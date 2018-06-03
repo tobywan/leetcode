@@ -229,6 +229,19 @@ func TestNewBalancedBT(t *testing.T) {
 	}
 }
 
+func BenchmarkMinDepth(b *testing.B) {
+	a := NewBT(map[int]int{1: 1, 2: 2, 3: 2, 4: 3, 5: 4, 6: 4, 7: 3})
+	for i := 0; i < b.N; i++ {
+		minDepth(a)
+	}
+}
+func BenchmarkMinDepthRec(b *testing.B) {
+	a := NewBT(map[int]int{1: 1, 2: 2, 3: 2, 4: 3, 5: 4, 6: 4, 7: 3})
+	for i := 0; i < b.N; i++ {
+		minDepthRec(a)
+	}
+}
+
 func TestMinDepth(t *testing.T) {
 
 	tests := []struct {
