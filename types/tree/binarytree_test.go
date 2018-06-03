@@ -278,3 +278,65 @@ func TestMinDepth(t *testing.T) {
 	}
 
 }
+
+func TestHasPathSum(t *testing.T) {
+	tests := []struct {
+		in1  map[int]int
+		in2  int
+		want bool
+	}{
+		{
+			in1:  map[int]int{1: 1},
+			in2:  1,
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2},
+			in2:  2,
+			want: false,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2},
+			in2:  3,
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7},
+			in2:  7,
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7},
+			in2:  8,
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7},
+			in2:  10,
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7},
+			in2:  11,
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: -1, 2: -2, 3: -3, 6: -4, 7: -5},
+			in2:  -3,
+			want: true,
+		},
+		{
+			in1:  map[int]int{1: 3, 2: 9, 4: 20, 8: 15, 16: 7},
+			in2:  54,
+			want: true,
+		},
+	}
+	for _, test := range tests {
+		a := NewBT(test.in1)
+		got := hasPathSum(a, test.in2)
+		if got != test.want {
+			t.Errorf("hasPathSum(%v,%d)=%t", test.in1, test.in2, got)
+		}
+	}
+
+}

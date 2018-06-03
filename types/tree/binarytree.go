@@ -265,3 +265,32 @@ func minSubDepth(level []*Node, levelDepth int) int {
 	}
 	return minSubDepth(next, levelDepth+1)
 }
+
+func hasPathSum(root *Node, sum int) bool {
+	if root == nil {
+		return false
+	}
+	return testSumPath(root, 0, sum)
+}
+
+func testSumPath(node *Node, subTotal int, sum int) bool {
+
+	subTotal = subTotal + node.Val
+
+	if node.Left == nil && node.Right == nil {
+		return sum == subTotal
+	}
+	res := false
+	if node.Left != nil {
+		res = testSumPath(node.Left, subTotal, sum)
+	}
+	if res {
+		return res
+	}
+	if node.Right != nil {
+		res = testSumPath(node.Right, subTotal, sum)
+	}
+
+	return res
+
+}
