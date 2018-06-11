@@ -32,6 +32,35 @@ func NewListNode(values ...int) *ListNode {
 
 }
 
+func hasCycle(head *ListNode) bool {
+	fast := head
+	slow := head
+	atEnd := false
+
+	for {
+		fast, atEnd = advance(fast, 2)
+		if atEnd {
+			return false
+		}
+		slow, _ = advance(slow, 1)
+		if fast == slow {
+			return true
+		}
+	}
+
+}
+
+func advance(node *ListNode, steps int) (child *ListNode, atEnd bool) {
+	child = node
+	for i := 0; i < steps; i++ {
+		child = child.Next
+		if child == nil {
+			return nil, true
+		}
+	}
+	return child, false
+}
+
 // Append adds a node
 func (l *ListNode) Append(i int) *ListNode {
 	n := &ListNode{i, nil}

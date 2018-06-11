@@ -46,3 +46,27 @@ func TestNilList(t *testing.T) {
 		t.Errorf("Expected nil list, got %v", got)
 	}
 }
+
+func TestNoCycle(t *testing.T) {
+	head := NewListNode(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -4, -99)
+	want := false
+	got := hasCycle(head)
+	if want != got {
+		t.Errorf("TestNoCycle failed. Expected %t, got %t", want, got)
+	}
+}
+
+func TestHasCycle(t *testing.T) {
+	stem := NewListNode(1, 2, 3, 4, 5, 6)
+	cycle := NewListNode(11, 22, 33, 44, 55, 66, 17, 28, 39, 40, -1, -4, -99)
+
+	tail := cycle.Tail()
+	tail.Next = cycle
+	tail = stem.Tail()
+	tail.Next = stem
+	want := true
+	got := hasCycle(stem)
+	if want != got {
+		t.Errorf("TestNoCycle failed. Expected %t, got %t", want, got)
+	}
+}
