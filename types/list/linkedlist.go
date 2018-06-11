@@ -8,19 +8,19 @@ import (
 ////////////////////////
 // local code only for test and display
 
-// ListNode is a Definition for singly-linked list.
-type ListNode struct {
+// Node is a Definition for singly-linked list.
+type Node struct {
 	Val  int
-	Next *ListNode
+	Next *Node
 }
 
-// NewListNode returns the root of a linked list
+// NewNode returns the root of a linked list
 // represented by the slice values
-func NewListNode(values ...int) *ListNode {
+func NewNode(values ...int) *Node {
 	if len(values) == 0 {
 		return nil
 	}
-	root := &ListNode{Val: values[0]}
+	root := &Node{Val: values[0]}
 	l1 := root
 
 	for _, i := range values[1:] {
@@ -32,7 +32,7 @@ func NewListNode(values ...int) *ListNode {
 
 }
 
-func hasCycle(head *ListNode) bool {
+func hasCycle(head *Node) bool {
 	fast := head
 	slow := head
 	atEnd := false
@@ -50,7 +50,7 @@ func hasCycle(head *ListNode) bool {
 
 }
 
-func advance(node *ListNode, steps int) (child *ListNode, atEnd bool) {
+func advance(node *Node, steps int) (child *Node, atEnd bool) {
 	child = node
 	for i := 0; i < steps; i++ {
 		child = child.Next
@@ -62,14 +62,14 @@ func advance(node *ListNode, steps int) (child *ListNode, atEnd bool) {
 }
 
 // Append adds a node
-func (l *ListNode) Append(i int) *ListNode {
-	n := &ListNode{i, nil}
+func (l *Node) Append(i int) *Node {
+	n := &Node{i, nil}
 	l.Next = n
 	return n
 }
 
 // Tail gets te last node, O(n)
-func (l *ListNode) Tail() *ListNode {
+func (l *Node) Tail() *Node {
 	n := l
 	for {
 		if n.Next == nil {
@@ -80,7 +80,7 @@ func (l *ListNode) Tail() *ListNode {
 	return n
 }
 
-func (l *ListNode) String() string {
+func (l *Node) String() string {
 	var b bytes.Buffer
 	n := l
 	b.WriteString(strconv.FormatInt(int64(l.Val), 10))

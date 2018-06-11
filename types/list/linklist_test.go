@@ -3,7 +3,7 @@ package list
 import "testing"
 
 func TestString(t *testing.T) {
-	root := &ListNode{Val: 1}
+	root := &Node{Val: 1}
 	s := root.String()
 
 	want := "1"
@@ -11,7 +11,7 @@ func TestString(t *testing.T) {
 		t.Errorf("Expected %q got %q", want, s)
 	}
 
-	root = NewListNode(1, 2, 3)
+	root = NewNode(1, 2, 3)
 	want = "1->2->3"
 	s = root.String()
 	if s != want {
@@ -20,7 +20,7 @@ func TestString(t *testing.T) {
 }
 
 func TestAppend(t *testing.T) {
-	root := NewListNode(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -4, -8)
+	root := NewNode(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -4, -8)
 	s := root.String()
 
 	want := "1->2->3->4->5->6->7->8->9->0->-1->-4->-8"
@@ -30,7 +30,7 @@ func TestAppend(t *testing.T) {
 
 }
 func TestTail(t *testing.T) {
-	root := NewListNode(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -4, -99)
+	root := NewNode(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -4, -99)
 	tail := root.Tail()
 	s := tail.String()
 
@@ -41,14 +41,14 @@ func TestTail(t *testing.T) {
 }
 
 func TestNilList(t *testing.T) {
-	got := NewListNode()
+	got := NewNode()
 	if got != nil {
 		t.Errorf("Expected nil list, got %v", got)
 	}
 }
 
 func TestNoCycle(t *testing.T) {
-	head := NewListNode(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -4, -99)
+	head := NewNode(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -4, -99)
 	want := false
 	got := hasCycle(head)
 	if want != got {
@@ -57,8 +57,8 @@ func TestNoCycle(t *testing.T) {
 }
 
 func TestHasCycle(t *testing.T) {
-	stem := NewListNode(1, 2, 3, 4, 5, 6)
-	cycle := NewListNode(11, 22, 33, 44, 55, 66, 17, 28, 39, 40, -1, -4, -99)
+	stem := NewNode(1, 2, 3, 4, 5, 6)
+	cycle := NewNode(11, 22, 33, 44, 55, 66, 17, 28, 39, 40, -1, -4, -99)
 
 	tail := cycle.Tail()
 	tail.Next = cycle
