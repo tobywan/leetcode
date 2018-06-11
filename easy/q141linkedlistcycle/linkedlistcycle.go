@@ -1,5 +1,7 @@
 package linkedlistcycle
 
+// See implementation in
+// github.com/tobywan/leetcode/types/list/linkedlist.go
 func hasCycle(head *ListNode) bool {
 	return false
 }
