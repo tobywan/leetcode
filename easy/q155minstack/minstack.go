@@ -4,48 +4,54 @@ package minstack
 // TODO what is the current min after popping
 type MinStack struct {
 	stack []int
-	min   int
+	mins  []int
 }
 
 // Constructor creates a new MinStack
 func Constructor() MinStack {
-	return MinStack{[]int{}, 0}
+	return MinStack{[]int{}, []int{}}
 }
 
 // Push adds an item to the top of the stack
 func (m *MinStack) Push(x int) {
 	m.stack = append(m.stack, x)
 
-	if x < m.min {
-		m.min = x
+	l := len(m.mins)
+
+	if l == 0 {
+		m.mins = append(m.mins, x)
+		return
 	}
+
+	min := m.mins[l-1]
+
+	if x < min {
+		min = x
+	}
+	m.mins = append(m.mins, min)
 
 }
 
 // Pop removes the top element
 func (m *MinStack) Pop() {
 	m.stack = m.stack[:len(m.stack)-1]
+	m.mins = m.mins[:len(m.mins)-1]
 }
 
 // Top reports the top element withoug changing the stack
 func (m *MinStack) Top() int {
-	l := len(m.stack)
+	return last(m.stack)
+}
+
+func last(s []int) int {
+	l := len(s)
 	if l == 0 {
 		return 0
 	}
-	return m.stack[l-1]
+	return s[l-1]
 }
 
 // GetMin returns the current minimum value
 func (m *MinStack) GetMin() int {
-	return m.min
+	return last(m.mins)
 }
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * obj := Constructor();
- * obj.Push(x);
- * obj.Pop();
- * param_3 := obj.Top();
- * param_4 := obj.GetMin();
- */
