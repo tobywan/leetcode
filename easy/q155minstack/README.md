@@ -1,4 +1,4 @@
-# 155 Min Stack
+# 155. Min Stack
 
 Design a stack that supports push, pop, tp, and retrieving the minimum element in constant time.
 
