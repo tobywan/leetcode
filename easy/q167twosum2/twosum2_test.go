@@ -31,6 +31,16 @@ func TestTwoSum(t *testing.T) {
 			in2:  9,
 			want: []int{1, 2},
 		},
+		{
+			in1:  []int{1, 2, 3, 5, 8, 13, 21, 34, 55},
+			in2:  39,
+			want: []int{4, 8},
+		},
+		{
+			in1:  []int{1, 2, 3, 5, 8, 13, 21, 34, 55},
+			in2:  60,
+			want: []int{4, 9},
+		},
 	}
 	for _, test := range tests {
 		got := twoSum(test.in1, test.in2)

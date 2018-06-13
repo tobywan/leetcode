@@ -2,7 +2,10 @@ package twosum
 
 func twoSum(numbers []int, target int) []int {
 
-	seen := make(map[int]int)
+	seen := make(map[int]int, len(numbers))
+
+	// we can fast forward to the 1st candidate for a sum.
+	// The lower value is
 
 	for i, n := range numbers {
 		seek := target - n
