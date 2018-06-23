@@ -57,36 +57,3 @@ func convertToTitle(n int) string {
 	}
 	return b.String()
 }
-
-// func convertToTitle(n int) string {
-// 	reverse := make([]rune, 0, 10) // assume 10 letters is OK for now
-
-// 	var r rune
-// 	for n > 0 {
-// 		r, n = units(n)
-// 		reverse = append(reverse, r)
-// 	}
-
-// 	var b bytes.Buffer
-
-// 	for i := len(reverse) - 1; i >= 0; i-- {
-// 		b.WriteRune(reverse[i])
-// 	}
-
-// 	return b.String()
-// }
-
-// // units finds the letter represented by the "units" of the number in base 26
-// // and returns its letter and also n >> 1 in base 26
-// func units(n int) (letter rune, shifted int) {
-
-// 	if n == 26 {
-// 		return 'Z', 0
-// 	}
-
-// 	u := n % 26
-// 	shift := n / 26
-
-// 	return rune(u-1) + 'A', shift
-
-// }
