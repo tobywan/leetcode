@@ -2,6 +2,7 @@ package factorialzeros
 
 import "testing"
 
+// TestTrailingZeros does exactly that
 func TestTrailingZeroes(t *testing.T) {
 	tests := []struct {
 		in   int
