@@ -1,8 +1,3 @@
-
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
 namespace EasyChallenges
 {
     public class Q027RemoveElementTests

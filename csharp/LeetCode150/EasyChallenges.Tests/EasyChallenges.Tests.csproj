@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\q088_Merge_Sorted_Array\EasyChallenges.csproj" />
+    <ProjectReference Include="..\EasyChallenges\EasyChallenges.csproj" />
   </ItemGroup>
 
   <ItemGroup>
