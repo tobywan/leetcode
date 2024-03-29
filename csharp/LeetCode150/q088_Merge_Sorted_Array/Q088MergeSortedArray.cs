@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
-namespace q088
-{
 
-    public class Solution
+namespace EasyChallenges
+{
+    public class Q088MergeSortedArray
     {
         public static void Main()
         {
